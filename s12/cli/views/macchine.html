@@ -1,0 +1,79 @@
+<section ng-if="!id">
+	<h1>
+	   Parco macchine
+	</h1>
+			
+	<table class="table table-hover"> 
+	<thead>
+	<tr>
+	<th>Tipo</th>
+	<th>Marca</th>
+	<th>Kw</th>
+	<th>Anno</th>
+	<th>More info</th>
+	<th>  </th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr ng-repeat="d in data">
+	<td>{{d.macchina}}</td>
+	<td>{{d.marca}}</td>
+	<td>{{d.kw}}</td>
+	<td>{{d.anno}}</td>
+	<td>{{d.descrizione}}</td>
+	<td><a ng-href="#/macchine/{{d.id}}" class="btn btn-warning">Modifica</a></td>
+	</tr>
+	<tbody>
+	</table>
+		
+			<br />
+		
+			<a class="btn btn-primary" href="#/home">
+				Torna all'homepage
+			</a>
+
+			<a class="btn btn-success" href="#/macchine/new" style="">
+				Aggiungi Nuova
+			</a>
+	
+</section>
+
+
+
+<section ng-if="id">
+	<h1>
+	   {{d.macchina|uppercase}} <span ng-hide="d.macchina">Nuova macchina</span>
+	</h1>
+	
+	
+	
+	<form ng-submit="save()" class="well">
+		<p class="form-group">
+			<label>Macchina</label>
+			<input type="text" ng-model="d.macchina" required autofocus />
+			</p>
+			<p class="form-group">
+			<label>marca</label>
+			<input type="text" ng-model="d.marca" required autofocus placeholder="es:fiat,john deer..." />
+			</p>
+			<p class="form-group">
+			<label>kw</label>
+			<input type="number" ng-model="d.kw" required autofocus />
+			</p>
+			<p class="form-group">
+			<label>anno</label>
+			<input type="date" ng-model="d.anno" max="2017-01-01" required autofocus />
+			</p>
+			<p class="form-group">
+			<label>descrizione</label>
+			<input type="text" ng-model="d.descrizione" placeholder="type your info here..." />
+		
+		</p>
+			<button class="btn btn-success" type="submit" title="Salva">
+				Salva
+			</button>
+			<a class="btn btn-info" accesskey="n"  href="#/macchine/new">Nuova</a>
+			<a class="btn btn-primary" accesskey="l"  href="#/macchine">Elenco</a>
+			<a class="btn btn-danger" accesskey="x" ng-click="remove()" href="#">Elimina</a>
+	</form>
+</section>

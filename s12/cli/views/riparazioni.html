@@ -1,0 +1,83 @@
+<section ng-if="!id">
+	<h1>
+	   Riparazioni
+	</h1>
+	<table>
+	 <tr>
+        <td>From:<input id="min"  type="date" placeholder="" /></td>
+         <td>To:<input id="max" type="date" placeholder="" /></td>
+                </tr>
+	</table>
+	
+	<table id="example" class="table table-hover"> 
+	<thead>
+	<tr>
+	<th>Intervento</th>
+	<th>Tipologia</th>
+	<th>Data intervento</th>
+	<th>Macchina</th>
+	<th>Marca</th>
+	<th>Ore lavorate</th>
+	<th>Costo</th>
+	<th>  </th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr ng-repeat="d in data">
+	<td>{{d.descrizione}}</td>
+	<td>{{d.tipologia}}</td>
+	<td>{{d.dataintervento}}</td>
+	<td>{{d.macchina}}</td>
+	<td>{{d.marca}}</td>
+	<td>{{d.orelavoro}}</td>
+	<td>{{d.spesa}}</td>
+	<td><a ng-href="#/riparazioni/{{d.id}}" class="btn btn-warning">Modifica</a></td>
+	</tr>
+	<tbody>
+	</table>
+		
+			<br />
+		
+			<a class="btn btn-primary" href="#/home">
+				Torna all'homepage
+			</a>
+
+			<a class="btn btn-success" href="#/riparazioni/new" style="">
+				Aggiungi Nuova
+			</a>
+	
+</section>
+
+<!-- tentativo non funzionante di filtro range date con plugin jquery -->
+<script>
+jQuery(document).ready(function() {
+      var table = jQuery('#example').DataTable();
+ 
+      // Add event listeners to the two range filtering inputs
+      jQuery('#min').keyup( function() { table.draw(); } );
+      jQuery('#max').keyup( function() { table.draw(); } );
+  } );
+</script>
+
+
+<section ng-if="id">
+	<h1>
+	   {{d.descrizione|uppercase}} <span ng-hide="d.descrizione">Nuovo intervento di riparazione</span>
+	</h1>
+	
+	<form ng-submit="save()" class="well">
+		<p class="form-group">
+			<label>Tipo di riparazione</label>
+			<input ng-model="d.descrizione" required autofocus />
+			<input type="number" ng-model="d.orelavoro" />
+		</p>
+			
+			<button class="btn btn-success" type="submit" title="Salva">
+				Salva
+			</button>
+			<a class="btn btn-info" accesskey="n"  href="#/riparazioni/new">Nuova</a>
+			<a class="btn btn-primary" accesskey="l"  href="#/riparazioni">Elenco</a>
+			<a class="btn btn-danger" accesskey="x" ng-click="remove()" href="#">Elimina</a>
+	</form>
+</section>
+

@@ -1,0 +1,53 @@
+<section ng-if="!id">
+	<h1>
+	  Elenco Marche
+	</h1>
+	
+	<table class="table table-hover"> 
+	<thead>
+	<tr>
+	<th>Marca</th>
+	<th>  </th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr ng-repeat="d in data">
+	<td>{{d.marca}}</td>
+	
+	<td><a ng-href="#/marche/{{d.id}}" class="btn btn-warning">Modifica</a></td>
+	</tr>
+	<tbody>
+	</table>
+		
+			<br />
+		
+			<a class="btn btn-primary" href="#/home">
+				Torna all'homepage
+			</a>
+
+			<a class="btn btn-success" href="#/marche/new" style="">
+				Aggiungi Nuova
+			</a>
+	
+</section>
+
+
+
+
+<section ng-if="id">
+	<h1>
+	   {{d.marca|uppercase}} <span ng-hide="d.marca">Nuova marca</span>
+	</h1>
+	<form ng-submit="save()" class="well">
+		<p class="form-group">
+			<label>Marca</label>
+			<input ng-model="d.marca" autofocus />
+		</p>
+			<button class="btn btn-success" type="submit" title="Salva">
+				Salva
+			</button>
+			<a class="btn btn-info" accesskey="n"  href="#/marche/new">Nuova</a>
+			<a class="btn btn-primary" accesskey="l"  href="#/marche">Elenco</a>
+			<a class="btn btn-danger" accesskey="x" ng-click="remove()"  href="#">Elimina</a>
+	</form>
+</section>
